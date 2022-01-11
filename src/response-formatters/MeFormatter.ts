@@ -1,5 +1,5 @@
 import IFormatter from "./IFormatter";
-import { tokenizer } from "../helpers";
+import { tokenizer } from "../lib/helpers";
 
 const template = `
 Name: {{ name }}

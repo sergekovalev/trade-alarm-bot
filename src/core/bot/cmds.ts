@@ -1,20 +1,20 @@
-import DB from './core/DB';
-import Bot from './core/Bot';
-import MeFormatter from './response-formatters/MeFormatter';
-import HelpFormatter from './response-formatters/HelpFormatter';
-import InitFormatter from './response-formatters/InitFormatter';
-import GetTickersFormatter from './response-formatters/GetTickersFormatter';
-import WalletFormatter from './response-formatters/WalletFormatter';
-import Media from './Media';
+import DB from '../DB';
+import Bot from '../Bot';
+import MeFormatter from '../../response-formatters/MeFormatter';
+import HelpFormatter from '../../response-formatters/HelpFormatter';
+import InitFormatter from '../../response-formatters/InitFormatter';
+import GetTickersFormatter from '../../response-formatters/GetTickersFormatter';
+import WalletFormatter from '../../response-formatters/WalletFormatter';
+import Media from '../../lib/Media';
 
-import { switchComparator } from './helpers';
+import { switchComparator } from '../../lib/helpers';
 
 const bot = Bot.instance();
 const db = DB.instance();
 
 export const init = (msg: any, match: any) => {
   const chatId = msg.chat.id;
-
+  
   db.initUser(chatId);
 
   bot.sendPhoto(chatId, new Media().images.init);
@@ -114,6 +114,8 @@ export const followTicker = async (msg: any, match: any) => {
 
   const [ticker, price] = match[1].toLowerCase().split(' ');
 
+  console.log(ticker, price)
+
   const hasOperation = /[0-9]/.test(price[0])
 
   const comparator = hasOperation ? 'eq' : switchComparator(price);
@@ -139,7 +141,7 @@ export const getPrice = async (msg: any, match: any) => {
 
     bot.sendMessage(chatId, `${ticker} costs $${price}`);
   } catch (e) {
-    bot.sendMessage(chatId, `Error while getting price for ${ticker}`)
+    bot.sendMessage(chatId, `Error while getting price for ${ticker.toFixed(2)}`)
   }
 }
 

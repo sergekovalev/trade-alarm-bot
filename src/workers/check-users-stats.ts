@@ -1,4 +1,4 @@
-import { time } from '../helpers';
+import { time } from '../lib/helpers';
 import DB from '../core/DB';
 import Bot from '../core/Bot';
 

@@ -1,7 +1,7 @@
 import IFormatter from "./IFormatter";
 
 export const help = `
-Bot upports next commands:
+Bot supports next commands:\n
 /tickers - to get all supported tickers
 /me - to get self info
 /me <NAME> - to set your name

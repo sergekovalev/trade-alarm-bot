@@ -1,5 +1,5 @@
 import DB from '../core/DB';
-import { time } from '../helpers';
+import { time } from '../lib/helpers';
 import { crypto } from '../api-providers/coinmarketcap';
 
 async function setLatestQuotes() {

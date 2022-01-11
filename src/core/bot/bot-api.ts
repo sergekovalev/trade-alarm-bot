@@ -13,7 +13,7 @@ import {
   getPrice as getPriceCmd,
 } from './cmds';
 
-import DB from './core/DB';
+import DB from '../DB';
 
 export default async () => {
   const db = DB.instance();

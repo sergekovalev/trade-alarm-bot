@@ -1,4 +1,4 @@
-import Bot from './core/Bot';
+import Bot from '../Bot';
 const bot = Bot.instance();
 
 const switcher = {
