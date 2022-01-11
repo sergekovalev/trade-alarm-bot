@@ -8,7 +8,7 @@
     "url": "https://github.com/sergekovalev/trade-monitor-bot"
   },
   "engines": {
-    "node": "v16.13.0"
+    "node": ">=v14.18.2"
   },
   "dependencies": {
     "axios": "^0.21.4",
@@ -21,6 +21,7 @@
     "webpack": "^5.52.0"
   },
   "scripts": {
+    "watch": "npx tsc && node __dist__/index",
     "build": "npx tsc"
   },
   "devDependencies": {

@@ -1,8 +1,17 @@
 import DB from '../core/DB';
 import { time } from '../helpers';
+import { crypto } from '../api-providers/coinmarketcap';
 
-function setLatestQuotes() {
-  DB.instance().setLatestQuotes();
+async function setLatestQuotes() {
+  try {
+    const resp = await crypto.listings.latest();
+  
+    DB.instance().setLatestQuotes(resp.data.data);
+  
+    console.log('Fetched latest quotes.');
+  } catch (err) {
+    console.error('Error while fetching latest quotes', err);
+  }
 }
 
 export default () => {

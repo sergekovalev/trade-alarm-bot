@@ -86,23 +86,24 @@ class DB {
     )
   }
 
-  async setLatestQuotes() {
-    const resp = await crypto.listings.latest();
-
+  async setLatestQuotes(data: Array<any>) {
     await this.collections.quotes.drop(() => {});
-    await this.collections.quotes.insertMany(resp.data.data);
+    await this.collections.quotes.insertMany(data);
   }
 
-  async getPriceFor(symbol: string) {
+  async getPriceFor(symbol: string): Promise<number> {
     const price = await this.collections.quotes.findOne({ symbol });
 
     return price.quote.USD.price;
   }
 
-  async getQuotes() {
+  async getQuotes(): Promise<Array<any>> {
     const quotes = await this.collections.quotes.find({}).toArray();
 
-    return quotes.map(({ symbol, quote: { USD: { price } } } : any) => ({ symbol: symbol.toLowerCase(), price }))
+    const mapper = ({ symbol, quote: { USD: { price } } } : any) =>
+      ({ symbol: symbol.toLowerCase(), price });
+
+    return quotes.map(mapper);
   }
 }
 

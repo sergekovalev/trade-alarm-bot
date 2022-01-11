@@ -21,9 +21,8 @@ const checkStatus = (price: number, action: any) => {
   }
 }
 
-export default () => {
-  setInterval(async () => {
-    const quotes = await DB.instance().getQuotes();
+async function fetchStats() {
+  const quotes = await DB.instance().getQuotes();
     const users = await DB.instance().getUsers();
 
     users.forEach((user: any) => {
@@ -39,5 +38,10 @@ export default () => {
         }
       })
     });
-  }, time.minutes(10))
+}
+
+export default () => {
+  fetchStats();
+
+  setInterval(fetchStats, time.minutes(10));
 }
