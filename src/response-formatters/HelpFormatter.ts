@@ -4,7 +4,7 @@ export const help = `
 Bot supports next commands:\n
 /tickers - to get all supported tickers
 /me - to get self info
-/me <NAME> - to set your name
+/callme <NAME> - to set your name
 /wallet - to get wallet info
 /clear wallet|actions - to clear up wallet|acions
 /wallet <TICKER> - to get info about a ticker in your wallet. E.g. /wallet btc

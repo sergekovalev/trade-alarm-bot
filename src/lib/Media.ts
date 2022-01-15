@@ -14,7 +14,7 @@ class Media {
 
   constructor() {
     this.images = {
-      init: fs.readFileSync(`${global.dirname}/assets/bot.png`)
+      init: fs.readFileSync(`${global.dirname}/assets/robot.png`)
     }
   }
 }

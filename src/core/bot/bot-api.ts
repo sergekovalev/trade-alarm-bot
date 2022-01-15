@@ -1,10 +1,11 @@
 import CmdSwitcher from './cmd-switcher';
 import {
   init as initCmd,
+  setMe as setMeCmd,
   help as helpCmd,
   tickers as tickersCmd,
   getMe as getMeCmd,
-  setMe as setMeCmd,
+  callMe as callMeCmd,
   getWallet as getWalletInfoCmd,
   setWallet as setWalletCmd,
   followTicker as followTickerCmd,
@@ -13,7 +14,10 @@ import {
   getPrice as getPriceCmd,
 } from './cmds';
 
+import Bot from '../Bot';
 import DB from '../DB';
+
+const bot = Bot.instance();
 
 export default async () => {
   const db = DB.instance();
@@ -21,10 +25,11 @@ export default async () => {
   await db.initTickers();
 
   CmdSwitcher.onCmd(/\/start/, initCmd);
+  CmdSwitcher.onCmd(/^\/setme (.+)$/, setMeCmd);
   CmdSwitcher.onCmd(/\/help/, helpCmd);
   CmdSwitcher.onCmd(/\/tickers/, tickersCmd);
   CmdSwitcher.onCmd(/^\/me$/, getMeCmd);
-  CmdSwitcher.onCmd(/\/me (.+)/, setMeCmd);
+  CmdSwitcher.onCmd(/\/callme (.+)/, callMeCmd);
   CmdSwitcher.onCmd(/^\/wallet$/, getWalletInfoCmd);
   // CmdSwitcher.onCmd(/^\/wallet clear$/, clearWalletCmd);
   CmdSwitcher.onCmd(/^\/wallet (.+)$/, setWalletCmd);

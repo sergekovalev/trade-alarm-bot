@@ -13,9 +13,27 @@ const bot = Bot.instance();
 const db = DB.instance();
 
 export const init = (msg: any, match: any) => {
-  const chatId = msg.chat.id;
+  const {
+    is_bot: isBot,
+    language_code: languageCode
+  } = msg.from;
   
-  db.initUser(chatId);
+  const {
+    id: chatId,
+    first_name: firstName,
+    last_name: lastName,
+    username
+  } = msg.chat;
+
+  if(isBot) {
+    return bot.sendMessage(chatId, 'Sorry, I prefer talking to real people.');
+  }
+
+  db.initUser({
+    chatId,
+    name: `${firstName} ${lastName}`,
+    username
+  });
 
   bot.sendPhoto(chatId, new Media().images.init);
   bot.sendMessage(chatId, new InitFormatter().format());
@@ -44,6 +62,14 @@ export const getMe = async (msg: any, match: any) => {
 }
 
 export const setMe = async (msg: any, match: any) => {
+  const chatId = msg.chat.id;
+
+  const user = await db.getUser(chatId);
+
+  bot.sendMessage(chatId, `👍`);
+}
+
+export const callMe = async (msg: any, match: any) => {
   const chatId = msg.chat.id;
 
   const user = await db.getUser(chatId);

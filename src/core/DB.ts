@@ -2,6 +2,12 @@ import { MongoClient } from 'mongodb';
 import IFormatter from 'src/response-formatters/IFormatter';
 import { crypto } from '../api-providers/coinmarketcap';
 
+interface IInitUser {
+  chatId: number;
+  name: string;
+  username: string;
+}
+
 class DB {
   static _shared : DB;
   connection: any
@@ -30,13 +36,14 @@ class DB {
     console.log('>>>', 'Connected Database.')
   }
 
-  async initUser(chatId: string) {
+  async initUser({ chatId, name, username }: IInitUser) {
     const count = await this.collections.users.find({ chatId }).count();
 
     if(!count) {
       await this.collections.users.insertMany([{
         chatId,
-        name: 'Guest',
+        name,
+        username,
         currency: 'usd',
         wallet: {},
         actions: []
