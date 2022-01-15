@@ -6,7 +6,6 @@ import InitFormatter from '../../response-formatters/InitFormatter';
 import GetTickersFormatter from '../../response-formatters/GetTickersFormatter';
 import WalletFormatter from '../../response-formatters/WalletFormatter';
 import Media from '../../lib/Media';
-import logger from '../logger';
 import { switchComparator } from '../../lib/helpers';
 
 const bot = Bot.instance();
