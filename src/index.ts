@@ -4,8 +4,13 @@ import fetchQuotes from './workers/fetch-quotes';
 import checkUsersStats from './workers/check-users-stats';
 import DB from './core/DB';
 import botApi from './core/bot/bot-api';
+import fs from 'fs';
 
 global.dirname = __dirname.split('/').slice(0, -1).join('/')
+
+if(!fs.existsSync(`${dirname}/.log`)) {
+  fs.writeFileSync(`${dirname}/.log`, '');
+}
 
 async function main() {
   await DB.instance().connect();
