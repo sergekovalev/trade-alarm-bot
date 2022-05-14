@@ -25,7 +25,7 @@ class DB {
 
   async connect() {
     const url = 'mongodb://127.0.0.1:27017'
-    const client = await mongoose.connect(url);
+    await mongoose.connect(url);
 
     console.log('>>>', 'Connected Database.')
   }
@@ -97,7 +97,7 @@ class DB {
     return price.quote.USD.price
   }
 
-  async getQuotes(): Promise<Array<any>> {
+  async getQuotes(): Promise<any[]> {
     const quotes = await QuoteEntity.find()
 
     const mapper = ({

@@ -1,4 +1,4 @@
-import { time } from '../lib/helpers'
+import { Time } from 'hl-digits'
 import DB from '../core/DB'
 import Bot from '../core/Bot'
 
@@ -33,7 +33,7 @@ async function fetchStats() {
 
       if (
         checkStatus(price, action) &&
-        Date.now() - action.lastChecked > time.hours(1)
+        Date.now() - action.lastChecked > Time.hours(1)
       ) {
         bot.sendMessage(
           user.chatId,
@@ -51,5 +51,5 @@ async function fetchStats() {
 export default () => {
   fetchStats()
 
-  setInterval(fetchStats, time.minutes(10))
+  setInterval(fetchStats, Time.minutes(10))
 }

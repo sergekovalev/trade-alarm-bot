@@ -842,6 +842,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+hl-digits@^0.1.15:
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/hl-digits/-/hl-digits-0.1.15.tgz#615d60f572433135fc2d19118d659f4127b46e54"
+  integrity sha512-G2NCmv1iKbxzkYP0gJ6RozWSoYsd/DqT5SAYqqmJ65WVOI4mdgITCdejQXSgkl0jks8W5peFQaZ55e5n0AaqZw==
+
 http-signature@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/http-signature/-/http-signature-1.2.0.tgz#9aecd925114772f3d95b65a60abb8f7c18fbace1"

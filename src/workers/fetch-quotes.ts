@@ -1,6 +1,6 @@
 import DB from '../core/DB'
-import { time } from '../lib/helpers'
 import { crypto } from '../api-providers/coinmarketcap'
+import { Time } from 'hl-digits'
 
 async function setLatestQuotes() {
   try {
@@ -17,5 +17,5 @@ async function setLatestQuotes() {
 export default () => {
   setLatestQuotes()
 
-  setInterval(setLatestQuotes, time.minutes(5))
+  setInterval(setLatestQuotes, Time.minutes(5))
 }
