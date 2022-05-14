@@ -1,47 +1,55 @@
-import { time } from '../lib/helpers';
-import DB from '../core/DB';
-import Bot from '../core/Bot';
+import { time } from '../lib/helpers'
+import DB from '../core/DB'
+import Bot from '../core/Bot'
 
-const bot = Bot.instance();
+const bot = Bot.instance()
 
 const checkStatus = (price: number, action: any) => {
-  switch(action.on) {
+  switch (action.on) {
     case 'eq':
-      return price === action.price;
+      return price === action.price
     case 'gt':
-      return price > action.price;
+      return price > action.price
     case 'gte':
-      return price >= action.price;
+      return price >= action.price
     case 'lt':
-      return price < action.price;
+      return price < action.price
     case 'lte':
-      return price <= action.price;
+      return price <= action.price
     default:
-      return false;
+      return false
   }
 }
 
 async function fetchStats() {
-  const quotes = await DB.instance().getQuotes();
-    const users = await DB.instance().getUsers();
+  const quotes = await DB.instance().getQuotes()
+  const users = await DB.instance().getUsers()
 
-    users.forEach((user: any) => {
-      user.actions.forEach((action: any, i: number) => {
-        const price = quotes.find(({ symbol }: any) => symbol === action.ticker)?.price;
+  users.forEach((user: any) => {
+    user.actions.forEach((action: any, i: number) => {
+      const price = quotes.find(
+        ({ symbol }: any) => symbol === action.ticker
+      )?.price
 
-        if(checkStatus(price, action) && (Date.now() - action.lastChecked) > time.hours(1)) {
-          bot.sendMessage(user.chatId, `${action.ticker.toUpperCase()} is $${price.toFixed(2)}`);
+      if (
+        checkStatus(price, action) &&
+        Date.now() - action.lastChecked > time.hours(1)
+      ) {
+        bot.sendMessage(
+          user.chatId,
+          `${action.ticker.toUpperCase()} is $${price.toFixed(2)}`
+        )
 
-          user.actions[i].lastChecked = Date.now();
+        user.actions[i].lastChecked = Date.now()
 
-          DB.instance().setUser(user);
-        }
-      })
-    });
+        DB.instance().setUser(user)
+      }
+    })
+  })
 }
 
 export default () => {
-  fetchStats();
+  fetchStats()
 
-  setInterval(fetchStats, time.minutes(10));
+  setInterval(fetchStats, time.minutes(10))
 }

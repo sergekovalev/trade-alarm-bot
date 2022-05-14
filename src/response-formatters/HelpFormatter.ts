@@ -1,4 +1,4 @@
-import IFormatter from "./IFormatter";
+import IFormatter from './IFormatter'
 
 export const help = `
 Bot supports next commands:\n
@@ -13,10 +13,10 @@ Bot supports next commands:\n
 /price <TICKER> - to get price of ticker in USD
 `
 
-class HelpFormatter implements IFormatter{
+class HelpFormatter implements IFormatter {
   format(data: any = null): string {
-    return help;
+    return help
   }
 }
 
-export default HelpFormatter;
+export default HelpFormatter

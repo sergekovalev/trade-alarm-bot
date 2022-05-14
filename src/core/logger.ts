@@ -1,7 +1,7 @@
-import fs from 'fs';
+import fs from 'fs'
 
 const logger = (msg: string) => {
-  fs.appendFile(`${dirname}/.log`, `${new Date()} ${msg}\n`, () => {});
+  fs.appendFile(`${dirname}/.log`, `${new Date()} ${msg}\n`, () => {})
 }
 
-export default logger;
+export default logger

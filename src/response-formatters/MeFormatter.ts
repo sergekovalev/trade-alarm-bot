@@ -1,19 +1,25 @@
-import IFormatter from "./IFormatter";
-import { tokenizer } from "../lib/helpers";
+import IFormatter from './IFormatter'
+import { tokenizer } from '../lib/helpers'
 
 const template = `
-My Name is {{ name }}
-I follow:
-{{ followings }}
-`;
+Your Name is {{ name }}
+You follow: {{ followings }}
+`
 
-class MeFormatter implements IFormatter{
+class MeFormatter implements IFormatter {
   format(user: any): string {
     return tokenizer(template, {
       name: user.name,
-      followings: user.actions.length ? user.actions.map((action: any) => `${action.ticker} on ${action.price}`).join('\n') : 'nothing'
-    });
+      followings: user.actions.length
+        ? '\n' + user.actions
+            .map(
+              (action: any) =>
+                `${action.ticker} on ${action.comparator} ${action.price}`
+            )
+            .join('\n')
+        : 'nothing',
+    })
   }
 }
 
-export default MeFormatter;
+export default MeFormatter

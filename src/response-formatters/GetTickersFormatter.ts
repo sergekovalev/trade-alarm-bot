@@ -1,9 +1,9 @@
-import IFormatter from "./IFormatter";
+import IFormatter from './IFormatter'
 
-class GetTickersFormatter implements IFormatter{
+class GetTickersFormatter implements IFormatter {
   format(data: any): string {
-    return data.join('\n');
+    return data.join('\n')
   }
 }
 
-export default GetTickersFormatter;
+export default GetTickersFormatter

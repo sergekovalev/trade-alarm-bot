@@ -2,9 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "lib": [
-      "es6"
-    ],
+    "lib": ["es6"],
     "allowJs": true,
     "outDir": "__dist__",
     "rootDir": "./src",
@@ -14,18 +12,12 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "src/*": [
-        "src/*"
-      ]
+      "src/*": ["src/*"]
     },
-    "typeRoots": [
-      "environment.d.ts"
-    ]
+    "typeRoots": ["environment.d.ts"]
   },
   "ts-node": {
     // Do not forget to `npm i -D tsconfig-paths`
-    "require": [
-      "tsconfig-paths/register"
-    ]
+    "require": ["tsconfig-paths/register"]
   }
 }

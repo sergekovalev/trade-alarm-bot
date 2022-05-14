@@ -1,2 +1,2 @@
-declare var dirname: string;
-declare var logger: any;
+declare var dirname: string
+declare var logger: any

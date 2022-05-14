@@ -1,5 +1,5 @@
 interface IFormatter {
-  format: (data: any) => string;
+  format: (data: any) => string
 }
 
-export default IFormatter;
+export default IFormatter

@@ -1,22 +1,22 @@
-import fs from 'fs';
+import fs from 'fs'
 
 class Media {
-  static _shared : any;
+  static _shared: any
   images: any = {}
 
   static instance() {
-    if(!Media._shared) {
-      Media._shared = new Media();
+    if (!Media._shared) {
+      Media._shared = new Media()
     }
 
-    return this._shared.Media;
+    return this._shared.Media
   }
 
   constructor() {
     this.images = {
-      init: fs.readFileSync(`${global.dirname}/assets/robot.png`)
+      init: fs.readFileSync(`${global.dirname}/assets/robot.png`),
     }
   }
 }
 
-export default Media;
+export default Media
